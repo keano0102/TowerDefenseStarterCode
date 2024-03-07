@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class Enums : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public enum Path
 
-    // Update is called once per frame
-    void Update()
     {
-        
+
+        Path1,
+
+        Path2
+
     }
 }

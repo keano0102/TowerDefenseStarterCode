@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7340086084810633090}
   - component: {fileID: 4945473485382417877}
+  - component: {fileID: 3960872717462651676}
   m_Layer: 0
   m_Name: barrack_level_1 (2)
   m_TagString: Untagged
@@ -70,8 +71,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -284844883
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 7277b73b4f6bfab4aa55a3e31910f039, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -84,3 +85,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &3960872717462651676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2395798336585661428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70d73faadfda46f4ca44cc8d589d8a6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackRange: 2
+  attackRate: 5
+  attackDamage: 3
+  attackSize: 1
+  projectileSpeed: 10
+  bulletPrefab: {fileID: 374847896942186242, guid: 5d457ffd0f546af43be102e78df4a16e, type: 3}
+  type: 1

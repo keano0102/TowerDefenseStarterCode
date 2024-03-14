@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 935555192431905364}
   - component: {fileID: 4390549578767202464}
+  - component: {fileID: 992552981995871643}
   m_Layer: 0
   m_Name: wizard_level_3
   m_TagString: Untagged
@@ -70,8 +71,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -284844883
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 3481c17862fa8a24bad7da1518fde8fb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -84,3 +85,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &992552981995871643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8249983503359140762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70d73faadfda46f4ca44cc8d589d8a6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackRange: 4
+  attackRate: 5
+  attackDamage: 7
+  attackSize: 1
+  projectileSpeed: 10
+  bulletPrefab: {fileID: 3930114375049265670, guid: fd1e0f13e76483a46b1b030a53ed0fb0, type: 3}
+  type: 2

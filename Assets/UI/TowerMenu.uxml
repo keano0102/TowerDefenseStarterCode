@@ -1,5 +1,12 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:VisualElement style="flex-grow: 1;">
-        <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" />
+    <Style src="project://database/Assets/UI/TowerMenu.uss?fileID=7433441132597879392&amp;guid=60151121d98aab74aad81c8f6c02d656&amp;type=3#TowerMenu" />
+    <ui:VisualElement class="optiebalk" style="flex-grow: 1; border-top-width: 8px; border-right-width: 8px; border-bottom-width: 8px; border-left-width: 8px; border-top-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0; border-bottom-left-radius: 0; border-left-color: rgba(0, 0, 0, 0.66); border-right-color: rgba(0, 0, 0, 0.66); border-top-color: rgba(0, 0, 0, 0.66); border-bottom-color: rgba(0, 0, 0, 0.66);">
+        <ui:VisualElement class="knoppenlijst">
+            <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" class="button" />
+            <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" class="button" />
+            <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" class="button" />
+            <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" class="button" />
+            <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" class="button" />
+        </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

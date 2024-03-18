@@ -4,21 +4,19 @@ using UnityEngine;
 
 public class ConstructionSite
 {
-    public Vector3Int TilePosition { get; private set; }
-    public Vector3 WorldPosition { get; private set; }
-    public Enums.SiteLevel Level { get; private set; }
+    public Vector3Int TilePosition;
+    public Vector3 WorldPosition;
+    public Enums.SiteLevel Level;
     public Enums.TowerType TowerType { get; private set; }
 
     private GameObject tower;
 
-    public ConstructionSite(Vector3Int tilePosition, Vector3 worldPosition, Enums.SiteLevel level, Enums.TowerType towerType)
+    public ConstructionSite(Vector3Int tilePosition, Vector3 worldPosition)
     {
-        TilePosition = tilePosition;
+        this.TilePosition = tilePosition;
         // Pas de y-waarde van de wereldpositie aan
-        WorldPosition = new Vector3(worldPosition.x, worldPosition.y + 0.5f, worldPosition.z);
-        Level = level;
-        TowerType = towerType;
-        tower = null;
+        this.WorldPosition += new Vector3(0, 0.5f, 0);
+        this.tower = null;
     }
     public void SetTower(GameObject newTower, Enums.SiteLevel newLevel, Enums.TowerType newType)
     {
@@ -26,7 +24,7 @@ public class ConstructionSite
         if (tower != null)
         {
             // Verwijder de huidige toren voordat je de nieuwe toren toewijst
-            DestroyTower();
+            GameObject.Destroy(tower);
         }
 
         // Wijs de nieuwe toren toe

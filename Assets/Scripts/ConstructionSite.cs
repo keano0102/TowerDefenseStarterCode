@@ -7,7 +7,7 @@ public class ConstructionSite
     public Vector3Int TilePosition;
     public Vector3 WorldPosition;
     public Enums.SiteLevel Level;
-    public Enums.TowerType TowerType { get; private set; }
+    public Enums.TowerType? TowerType { get; private set; }
 
     private GameObject tower;
 

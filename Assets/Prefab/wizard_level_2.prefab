@@ -103,4 +103,4 @@ MonoBehaviour:
   attackSize: 1
   projectileSpeed: 10
   bulletPrefab: {fileID: 3930114375049265670, guid: fd1e0f13e76483a46b1b030a53ed0fb0, type: 3}
-  type: 2
+  type: 3

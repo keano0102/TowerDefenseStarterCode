@@ -128,20 +128,26 @@ public class TowerMenu : MonoBehaviour
     }
     private void OnUpdateButtonClicked()
     {
-        if(selectedSite != null)
+        if (selectedSite == null)
+            return;
+        if (selectedSite.TowerType == null)
         {
-            selectedSite.Level++;
-            EvaluateMenu();
+            Debug.LogWarning("Cannot upgrade site because no tower has been build ");
+            return;
         }
+        Enums.SiteLevel newLevel = selectedSite.Level + 1;
+        GameManager.Instance.Build(selectedSite.TowerType.Value, newLevel);
+        EvaluateMenu();
     }
     private void OnDestroyButtonClicked()
     {
-        if(selectedSite == null)
-        {
-            selectedSite.SetTower(null, Enums.SiteLevel.Onbebouwd, Enums.TowerType.Archer);
-
-        }
+        if(selectedSite == null) 
+            return;
+        selectedSite.SetTower(null, Enums.SiteLevel.Onbebouwd, Enums.TowerType.None);
+        EvaluateMenu() ;
     }
+
+
     private void OnDestroy()
     {
         if (archerButton != null)

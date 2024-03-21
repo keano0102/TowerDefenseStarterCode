@@ -10,6 +10,7 @@ public class Enums: MonoBehaviour
     }
     public enum TowerType
     {
+        None,
         Archer, 
         Sword, 
         Wizard

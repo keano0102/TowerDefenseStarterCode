@@ -40,7 +40,14 @@ public class Projectile : MonoBehaviour
         // Check if the distance between this object and the target is smaller than 0.2
         if (Vector3.Distance(transform.position, target.position) < 0.2f)
         {
-            // If so, destroy this object
+            // If so, damage the target
+            Enemy enemy = target.GetComponent<Enemy>();
+            if (enemy != null)
+            {
+                enemy.Damage(damage);
+            }
+
+            // Then, destroy this object
             Destroy(gameObject);
         }
     }

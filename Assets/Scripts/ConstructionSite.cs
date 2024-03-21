@@ -15,6 +15,7 @@ public class ConstructionSite
     {
         this.TilePosition = tilePosition;
         // Pas de y-waarde van de wereldpositie aan
+        this.WorldPosition = worldPosition;
         this.WorldPosition += new Vector3(0, 0.5f, 0);
         this.tower = null;
     }

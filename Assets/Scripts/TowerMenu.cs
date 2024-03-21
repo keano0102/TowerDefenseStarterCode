@@ -72,45 +72,48 @@ public class TowerMenu : MonoBehaviour
         }
     }
     void Start()
-
     {
-
         root = GetComponent<UIDocument>().rootVisualElement;
 
-
-
-        archerButton = root.Q<Button>("archer-button");
-
-        swordButton = root.Q<Button>("sword-button");
-
-        wizardButton = root.Q<Button>("wizard-button");
-
+        archerButton = root.Q<Button>("archer-tower");
+        swordButton = root.Q<Button>("sword-tower");
+        wizardButton = root.Q<Button>("wizard-tower");
         updateButton = root.Q<Button>("button-upgrade");
-
         destroyButton = root.Q<Button>("button-destroy");
 
         if (archerButton != null)
         {
             archerButton.clicked += OnArcherButtonClicked;
         }
+
         if (swordButton != null)
         {
             swordButton.clicked += OnSwordButtonClicked;
         }
+
         if (wizardButton != null)
         {
             wizardButton.clicked += OnWizardButtonClicked;
         }
+
         if (updateButton != null)
         {
             updateButton.clicked += OnUpdateButtonClicked;
         }
+
         if (destroyButton != null)
         {
             destroyButton.clicked += OnDestroyButtonClicked;
         }
+
         root.visible = false;
     }
+
+    public void ToggleVisibility()
+    {
+        root.visible = !root.visible;
+    }
+
     private void OnArcherButtonClicked()
     {
     }

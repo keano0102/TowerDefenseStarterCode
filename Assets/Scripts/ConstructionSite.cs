@@ -44,4 +44,8 @@ public class ConstructionSite
             tower = null;
         }
     }
+    public Vector3 BuildPosition()
+    {
+        return WorldPosition; // Of een andere berekening voor de bouwpositie
+    }
 }

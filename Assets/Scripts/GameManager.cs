@@ -50,4 +50,40 @@ public class GameManager : MonoBehaviour
     {
         towerMenu = TowerMenu.GetComponent<TowerMenu>();
     }
+    public void Build(Enums.TowerType type, Enums.SiteLevel level)
+    {
+        // Je kunt niet bouwen als er geen site is geselecteerd
+        if (selectedSite == null)
+        {
+            return;
+        }
+
+        // Selecteer de juiste lijst op basis van het torentype
+        List<GameObject> towerList = null;
+        switch (type)
+        {
+            case Enums.TowerType.Archer:
+                towerList = Archers;
+                break;
+            case Enums.TowerType.Sword:
+                towerList = Swords;
+                break;
+            case Enums.TowerType.Wizard:
+                towerList = Wizards;
+                break;
+        }
+
+        // Gebruik een switch met het niveau om een GameObject-toren te maken
+        GameObject towerPrefab = towerList[(int)level];
+
+        // Haal de positie van de ConstructionSite op
+        Vector3 buildPosition = selectedSite.BuildPosition();
+
+        GameObject towerInstance = Instantiate(towerPrefab, buildPosition, Quaternion.identity);
+
+        // Configureer de geselecteerde site om de toren in te stellen
+        selectedSite.SetTower(towerInstance, level, type); // Voeg level en type toe als
+        towerMenu.SetSite(null);
+
+    }
 }

@@ -15,6 +15,14 @@ public class Enemy : MonoBehaviour
 
     // Update is called once per frame
     private int pathIndex = 1;
+    public void Damage(int damage)
+    {
+        health-=damage;
+        if(health <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -39,4 +47,5 @@ public class Enemy : MonoBehaviour
             }
         }
     }
+
 }

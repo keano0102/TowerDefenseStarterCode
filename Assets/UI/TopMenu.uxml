@@ -1,0 +1,9 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/TopMenu.uss?fileID=7433441132597879392&amp;guid=afef153196dbf8749962f94c81099080&amp;type=3#TopMenu" />
+    <ui:VisualElement style="flex-grow: 1; width: 129px; height: 324px;">
+        <ui:Label tabindex="-1" text="Gate Health:" parse-escape-sequences="true" display-tooltip-when-elided="true" name="health" class="label" style="width: 120px;" />
+        <ui:Label tabindex="-1" text="Credits:" parse-escape-sequences="true" display-tooltip-when-elided="true" name="credits" style="width: 120px; -unity-font-style: bold;" />
+        <ui:Label tabindex="-1" text="Wave: " parse-escape-sequences="true" display-tooltip-when-elided="true" name="wave" style="width: 120px; -unity-font-style: bold;" />
+        <ui:Button text="Start" parse-escape-sequences="true" display-tooltip-when-elided="true" name="start-button" class="button" style="border-top-left-radius: 8px; border-top-right-radius: 8px; border-bottom-right-radius: 8px; border-bottom-left-radius: 8px; -unity-font-style: bold;" />
+    </ui:VisualElement>
+</ui:UXML>

@@ -142,7 +142,7 @@ public class TowerMenu : MonoBehaviour
     private void OnDestroyButtonClicked()
     {
         if(selectedSite == null) 
-            return;
+        return;
         selectedSite.SetTower(null, Enums.SiteLevel.Onbebouwd, Enums.TowerType.None);
         EvaluateMenu() ;
     }

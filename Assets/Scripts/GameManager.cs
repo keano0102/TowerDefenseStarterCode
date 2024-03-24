@@ -11,7 +11,12 @@ public class GameManager : MonoBehaviour
     public List<GameObject> Archers = new List<GameObject>();
     public List<GameObject> Swords = new List<GameObject>();
     public List<GameObject> Wizards = new List<GameObject>();
-   
+    private int health;
+    private int credits;
+    private int wave;
+    private int currentWave;
+    public TopMenu topMenu;
+    public bool waveActive = false;
     public static GameManager Instance
     {
         get
@@ -85,6 +90,25 @@ public class GameManager : MonoBehaviour
         // Configureer de geselecteerde site om de toren in te stellen
         selectedSite.SetTower(towerInstance, level, type); // Voeg level en type toe als
         towerMenu.SetSite(null);
-
+    }
+    public void StartGame()
+    {
+        credits = 200; 
+        health = 10;
+        currentWave= 0;
+        topMenu.UpdateTopMenuLabels(credits, health, currentWave + 1);
+    }
+    public int GetCurrentWave()
+    {
+        return currentWave - 1;
+    }
+    public int GetCredits()
+    {
+        return credits;
+    }
+    public void RemoveCredits(int amount)
+    {
+        credits -= amount;
+        topMenu.SetCreditsLabel("Credits: " + credits);
     }
 }

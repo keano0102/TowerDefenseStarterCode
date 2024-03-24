@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public List<GameObject> Archers = new List<GameObject>();
     public List<GameObject> Swords = new List<GameObject>();
     public List<GameObject> Wizards = new List<GameObject>();
+   
     public static GameManager Instance
     {
         get

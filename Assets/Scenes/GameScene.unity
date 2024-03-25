@@ -1424,6 +1424,8 @@ MonoBehaviour:
   - {fileID: 7315349522117708832, guid: 6916f6daa77818448870d0c8afec3c50, type: 3}
   - {fileID: 4354144312804934657, guid: 708ded292b42e3546bb94d295dfdca97, type: 3}
   - {fileID: 8249983503359140762, guid: 5837af23ff7f2eb48844a7a46bf90076, type: 3}
+  topMenu: {fileID: 841246786}
+  waveActive: 0
 --- !u!4 &1245267354
 Transform:
   m_ObjectHideFlags: 0

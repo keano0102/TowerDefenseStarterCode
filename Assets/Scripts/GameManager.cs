@@ -33,6 +33,12 @@ public class GameManager : MonoBehaviour
             return instance;
         }
     }
+    private Dictionary<Enums.TowerType, List<int>> towerPrefabCosts = new Dictionary<Enums.TowerType, List<int>>()
+    {
+        { Enums.TowerType.Archer, new List<int> { 50, 100, 150} },
+        {Enums.TowerType.Sword, new List<int> { 75,125,175} },
+        {Enums.TowerType.Wizard, new List<int> {100, 150, 200} }
+    };
     public void SelectSite(ConstructionSite site)
     {
         // Onthoud de geselecteerde site
@@ -86,11 +92,13 @@ public class GameManager : MonoBehaviour
         Vector3 buildPosition = selectedSite.BuildPosition();
 
         GameObject towerInstance = Instantiate(towerPrefab, buildPosition, Quaternion.identity);
-
+       int towerCost = GetCost(type, level);
+        AddCredits(-towerCost);
         // Configureer de geselecteerde site om de toren in te stellen
         selectedSite.SetTower(towerInstance, level, type); // Voeg level en type toe als
         towerMenu.SetSite(null);
     }
+    
     public void StartGame()
     {
         credits = 200; 
@@ -98,17 +106,44 @@ public class GameManager : MonoBehaviour
         currentWave= 0;
         topMenu.UpdateTopMenuLabels(credits, health, currentWave + 1);
     }
-    public int GetCurrentWave()
+    public void AttackGate(Enums.Path path)
     {
-        return currentWave - 1;
+        if(path== Enums.Path.Path1 || path== Enums.Path.Path2)
+        {
+            health--;
+            
+        }
+        else
+        {
+            Debug.LogWarning("unknown path: " + path);
+        }
     }
-    public int GetCredits()
+    public void AddCredits(int amount)
     {
-        return credits;
+        credits+= amount;
+        topMenu.SetCreditsLabel("Credits: " + credits);
     }
     public void RemoveCredits(int amount)
     {
         credits -= amount;
         topMenu.SetCreditsLabel("Credits: " + credits);
     }
+    public int GetCredits()
+    {
+        return credits;
+    }
+    public int GetCost(Enums.TowerType type, Enums.SiteLevel level, bool selling= false)
+    {
+        int cost = 0;
+        if(selling)
+        {
+            cost = towerPrefabCosts[type][(int)level] /2;
+        }
+        else
+        {
+            cost = towerPrefabCosts[type][(int)level];
+        }
+        return cost;
+    }
+    
 }

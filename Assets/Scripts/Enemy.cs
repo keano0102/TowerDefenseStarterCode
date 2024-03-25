@@ -24,12 +24,6 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
     void Update()
     {
         float step = speed * Time.deltaTime;
@@ -45,6 +39,14 @@ public class Enemy : MonoBehaviour
             if (target == null)
             {
                 Destroy(gameObject);
+                if(path == Enums.Path.Path1)
+                {
+                    GameManager.Instance.AttackGate(Enums.Path.Path1);
+                }
+                else if (path == Enums.Path.Path2)
+                {
+                    GameManager.Instance.AttackGate(Enums.Path.Path2);
+                }
             }
         }
     }

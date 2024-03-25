@@ -19,13 +19,23 @@ public class TowerMenu : MonoBehaviour
 
         // Access the site level property of selectedSite
         int siteLevel = (int)selectedSite.Level;
-
+        int availableCredits = GameManager.Instance.GetCredits();
         // Disable all buttons initially
         archerButton.SetEnabled(false);
         wizardButton.SetEnabled(false);
         swordButton.SetEnabled(false);
         updateButton.SetEnabled(false);
         destroyButton.SetEnabled(false);
+
+        if(selectedSite.Level == Enums.SiteLevel.Onbebouwd) 
+        {
+            archerButton.SetEnabled(availableCredits >= GameManager.Instance.GetCost(Enums.TowerType.Archer, selectedSite.Level));
+            swordButton.SetEnabled(availableCredits >= GameManager.Instance.GetCost(Enums.TowerType.Sword, selectedSite.Level));
+            wizardButton.SetEnabled(availableCredits >= GameManager.Instance.GetCost(Enums.TowerType.Wizard, selectedSite.Level));
+            updateButton.SetEnabled(false);
+            destroyButton.SetEnabled(false);
+        }
+        
 
         // Enable buttons based on site level using a switch statement
         switch (siteLevel)
@@ -35,15 +45,30 @@ public class TowerMenu : MonoBehaviour
                 archerButton.SetEnabled(true);
                 wizardButton.SetEnabled(true);
                 swordButton.SetEnabled(true);
+                updateButton.SetEnabled(false);
+                destroyButton.SetEnabled(false);
                 break;
             case 1:
+                archerButton.SetEnabled(false);
+                wizardButton.SetEnabled(false);
+                swordButton.SetEnabled(false);
+                updateButton.SetEnabled(true);
+                destroyButton.SetEnabled(true);
+                break;
             case 2:
                 // For site levels 1 and 2, enable update and destroy buttons
+                archerButton.SetEnabled(false);
+                wizardButton.SetEnabled(false);
+                swordButton.SetEnabled(false);
                 updateButton.SetEnabled(true);
                 destroyButton.SetEnabled(true);
                 break;
             case 3:
                 // For site level 3, only enable the destroy button
+                archerButton.SetEnabled(false);
+                wizardButton.SetEnabled(false);
+                swordButton.SetEnabled(false);
+                updateButton.SetEnabled(false);
                 destroyButton.SetEnabled(true);
                 break;
             default:
@@ -108,36 +133,26 @@ public class TowerMenu : MonoBehaviour
 
         root.visible = false;
     }
-
-    public void ToggleVisibility()
-    {
-        root.visible = !root.visible;
-    }
-
     private void OnArcherButtonClicked()
     {
-        GameManager.Instance.Build(Enums.TowerType.Archer, Enums.SiteLevel.Onbebouwd);
+        GameManager.Instance.Build(Enums.TowerType.Archer, Enums.SiteLevel.Level1);
     }
     private void OnSwordButtonClicked()
     {
-        GameManager.Instance.Build(Enums.TowerType.Sword, Enums.SiteLevel.Onbebouwd);
+        GameManager.Instance.Build(Enums.TowerType.Sword, Enums.SiteLevel.Level1);
     }
     private void OnWizardButtonClicked()
     {
-        GameManager.Instance.Build(Enums.TowerType.Wizard, Enums.SiteLevel.Onbebouwd);
+        GameManager.Instance.Build(Enums.TowerType.Wizard, Enums.SiteLevel.Level1);
     }
     private void OnUpdateButtonClicked()
     {
-        if (selectedSite == null)
-            return;
-        if (selectedSite.TowerType == null)
+        if (selectedSite != null)
         {
-            Debug.LogWarning("Cannot upgrade site because no tower has been build ");
-            return;
+            Enums.SiteLevel newlevel = selectedSite.Level + 1;
+            GameManager.Instance.Build(selectedSite.TowerType.Value, newlevel);
+            EvaluateMenu();
         }
-        Enums.SiteLevel newLevel = selectedSite.Level + 1;
-        GameManager.Instance.Build(selectedSite.TowerType.Value, newLevel);
-        EvaluateMenu();
     }
     private void OnDestroyButtonClicked()
     {
@@ -168,7 +183,7 @@ public class TowerMenu : MonoBehaviour
         }
         if (destroyButton != null)
         {
-            destroyButton.clicked -= OnArcherButtonClicked;
+            destroyButton.clicked -= OnDestroyButtonClicked; // Corrected from OnArcherButtonClicked
         }
     }
 }

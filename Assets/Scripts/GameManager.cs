@@ -16,7 +16,6 @@ public class GameManager : MonoBehaviour
     private int wave;
     private int currentWave;
     public TopMenu topMenu;
-    public bool waveActive = false;
     public static GameManager Instance
     {
         get
@@ -35,10 +34,11 @@ public class GameManager : MonoBehaviour
     }
     private Dictionary<Enums.TowerType, List<int>> towerPrefabCosts = new Dictionary<Enums.TowerType, List<int>>()
     {
-        { Enums.TowerType.Archer, new List<int> { 50, 100, 150} },
-        {Enums.TowerType.Sword, new List<int> { 75,125,175} },
-        {Enums.TowerType.Wizard, new List<int> {100, 150, 200} }
+        { Enums.TowerType.Archer, new List<int> { 20, 40, 100} },
+        {Enums.TowerType.Sword, new List<int> { 25,50,125} },
+        {Enums.TowerType.Wizard, new List<int> {35, 70, 165} }
     };
+    
     public void SelectSite(ConstructionSite site)
     {
         // Onthoud de geselecteerde site
@@ -61,6 +61,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         towerMenu = TowerMenu.GetComponent<TowerMenu>();
+        StartGame();
     }
     public void Build(Enums.TowerType type, Enums.SiteLevel level)
     {
@@ -92,7 +93,7 @@ public class GameManager : MonoBehaviour
         Vector3 buildPosition = selectedSite.BuildPosition();
 
         GameObject towerInstance = Instantiate(towerPrefab, buildPosition, Quaternion.identity);
-       int towerCost = GetCost(type, level);
+        int towerCost = GetCost(type, level);
         AddCredits(-towerCost);
         // Configureer de geselecteerde site om de toren in te stellen
         selectedSite.SetTower(towerInstance, level, type); // Voeg level en type toe als
@@ -101,10 +102,19 @@ public class GameManager : MonoBehaviour
     
     public void StartGame()
     {
-        credits = 200; 
+        credits = 400; 
         health = 10;
-        currentWave= 0;
+        currentWave = 0;
         topMenu.UpdateTopMenuLabels(credits, health, currentWave + 1);
+    }
+    public int GetCredits()
+    {
+        return credits;
+    }
+    public void RemoveCredits(int amount)
+    {
+        credits -= amount;
+        topMenu.SetCreditsLabel("Credits: " + credits);
     }
     public void AttackGate(Enums.Path path)
     {
@@ -123,15 +133,8 @@ public class GameManager : MonoBehaviour
         credits+= amount;
         topMenu.SetCreditsLabel("Credits: " + credits);
     }
-    public void RemoveCredits(int amount)
-    {
-        credits -= amount;
-        topMenu.SetCreditsLabel("Credits: " + credits);
-    }
-    public int GetCredits()
-    {
-        return credits;
-    }
+    
+    
     public int GetCost(Enums.TowerType type, Enums.SiteLevel level, bool selling= false)
     {
         int cost = 0;

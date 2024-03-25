@@ -28,13 +28,14 @@ public class TopMenu : MonoBehaviour
     {
         wavelabel.text= text;
     }
+    public void SetCreditsLabel(string text)
+    {
+        creditslabel.text = text;
+    }
     public void SetHealthLabel(string text) 
     {
         healthlabel.text= text;
     }
-    public void SetCreditsLabel(string text)
-    {
-        creditslabel.text= text;
-    }
+    
 }
     

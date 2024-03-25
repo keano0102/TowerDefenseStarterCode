@@ -12,14 +12,15 @@ public class Enemy : MonoBehaviour
     public Enums.Path path { get; set; }
 
     public GameObject target { get; set; }
-
-    // Update is called once per frame
     private int pathIndex = 1;
+
     public void Damage(float damage)
     {
         health -= damage;
+
         if (health <= 0)
         {
+            GameManager.Instance.AddCredits(points);
             Destroy(gameObject);
         }
     }
@@ -34,11 +35,13 @@ public class Enemy : MonoBehaviour
             // if close, request a new waypoint 
             target = EnemySpawner.Get.RequestTarget(path, pathIndex);
             pathIndex++;
+
             // if target is null, we have reached the end of the path. 
             // Destroy the enemy at this point 
             if (target == null)
             {
                 Destroy(gameObject);
+
                 if(path == Enums.Path.Path1)
                 {
                     GameManager.Instance.AttackGate(Enums.Path.Path1);

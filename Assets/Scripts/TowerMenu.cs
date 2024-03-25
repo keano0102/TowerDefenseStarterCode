@@ -35,45 +35,21 @@ public class TowerMenu : MonoBehaviour
             updateButton.SetEnabled(false);
             destroyButton.SetEnabled(false);
         }
-        
-
-        // Enable buttons based on site level using a switch statement
-        switch (siteLevel)
+        else if(selectedSite.Level < Enums.SiteLevel.Level3)
         {
-            case 0:
-                // For site level 0, enable archer, wizard, and sword buttons
-                archerButton.SetEnabled(true);
-                wizardButton.SetEnabled(true);
-                swordButton.SetEnabled(true);
-                updateButton.SetEnabled(false);
-                destroyButton.SetEnabled(false);
-                break;
-            case 1:
-                archerButton.SetEnabled(false);
-                wizardButton.SetEnabled(false);
-                swordButton.SetEnabled(false);
-                updateButton.SetEnabled(true);
-                destroyButton.SetEnabled(true);
-                break;
-            case 2:
-                // For site levels 1 and 2, enable update and destroy buttons
-                archerButton.SetEnabled(false);
-                wizardButton.SetEnabled(false);
-                swordButton.SetEnabled(false);
-                updateButton.SetEnabled(true);
-                destroyButton.SetEnabled(true);
-                break;
-            case 3:
-                // For site level 3, only enable the destroy button
-                archerButton.SetEnabled(false);
-                wizardButton.SetEnabled(false);
-                swordButton.SetEnabled(false);
-                updateButton.SetEnabled(false);
-                destroyButton.SetEnabled(true);
-                break;
-            default:
-                // Handle any other site levels if necessary
-                break;
+            archerButton.SetEnabled(availableCredits >= GameManager.Instance.GetCost(Enums.TowerType.Archer, selectedSite.Level));
+            swordButton.SetEnabled(availableCredits >= GameManager.Instance.GetCost(Enums.TowerType.Sword, selectedSite.Level));
+            wizardButton.SetEnabled(availableCredits >= GameManager.Instance.GetCost(Enums.TowerType.Wizard, selectedSite.Level));
+            updateButton.SetEnabled(availableCredits >= GameManager.Instance.GetCost(selectedSite.TowerType.Value, selectedSite.Level + 1));
+            destroyButton.SetEnabled(true);
+        }
+        else if(selectedSite.Level == Enums.SiteLevel.Level3)
+        {
+            archerButton.SetEnabled(false);
+            swordButton.SetEnabled(false);
+            wizardButton.SetEnabled(false);
+            updateButton.SetEnabled(false);
+            destroyButton.SetEnabled(true);
         }
     }
     public void SetSite(ConstructionSite site)
@@ -159,10 +135,8 @@ public class TowerMenu : MonoBehaviour
         if(selectedSite == null) 
         return;
         selectedSite.SetTower(null, Enums.SiteLevel.Onbebouwd, Enums.TowerType.None);
-        EvaluateMenu() ;
+        EvaluateMenu();
     }
-
-
     private void OnDestroy()
     {
         if (archerButton != null)

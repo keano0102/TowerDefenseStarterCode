@@ -20,6 +20,7 @@ public class Enemy : MonoBehaviour
 
         if (health <= 0)
         {
+            GameManager.Instance.RemoveInGameEnemy();
             GameManager.Instance.AddCredits(points);
             Destroy(gameObject);
         }
@@ -41,7 +42,7 @@ public class Enemy : MonoBehaviour
             if (target == null)
             {
                 Destroy(gameObject);
-
+                GameManager.Instance.RemoveInGameEnemy();
                 if(path == Enums.Path.Path1)
                 {
                     GameManager.Instance.AttackGate(Enums.Path.Path1);

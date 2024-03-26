@@ -6,7 +6,7 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     // Start is called before the first frame update
-    private static EnemySpawner instance;
+    public static EnemySpawner instance;
     public List<GameObject> Path1 = new List<GameObject>();
     public List<GameObject> Path2 = new List<GameObject>();
     public List<GameObject> Enemies = new List<GameObject>();
@@ -26,8 +26,8 @@ public class EnemySpawner : MonoBehaviour
         }
     }
     private void SpawnEnemy(int type, Enums.Path path)
-
     {
+        GameManager.Instance.AddInGameEnemy();
         Vector3 spawnPosition;
         Quaternion spawnRotation;
         if (path == Enums.Path.Path1)

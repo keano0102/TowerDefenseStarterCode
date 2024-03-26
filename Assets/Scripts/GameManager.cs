@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     private int currentWave;
     public TopMenu topMenu;
     private bool waveActive = false;
+    public int enemyInGameCounter = 0;
     public static GameManager Instance
     {
         get
@@ -159,6 +160,25 @@ public class GameManager : MonoBehaviour
     public void EndWave()
     {
         waveActive = false;
+    }
+    public void AddInGameEnemy()
+    {
+        enemyInGameCounter++;
+    }
+    public void RemoveInGameEnemy()
+    {
+        enemyInGameCounter--;
+        if(waveActive = false && enemyInGameCounter <= 0)
+        {
+            if(currentWave==2)
+            {
+                return;
+            }
+            else
+            {
+                topMenu.EnableWaveButton();
+            }
+        }
     }
     
 }

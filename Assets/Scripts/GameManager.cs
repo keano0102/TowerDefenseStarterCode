@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     private int wave;
     private int currentWave;
     public TopMenu topMenu;
+    private bool waveActive = false;
     public static GameManager Instance
     {
         get
@@ -147,6 +148,17 @@ public class GameManager : MonoBehaviour
             cost = towerPrefabCosts[type][(int)level];
         }
         return cost;
+    }
+    public void StartWave()
+    {
+        currentWave = 0;
+        currentWave++;
+        topMenu.SetWaveLabel("Wave: " + currentWave);
+        waveActive = true;
+    }
+    public void EndWave()
+    {
+        waveActive = false;
     }
     
 }

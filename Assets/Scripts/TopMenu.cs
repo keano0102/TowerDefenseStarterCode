@@ -37,5 +37,13 @@ public class TopMenu : MonoBehaviour
     {
         healthlabel.text = text;
     }
-
+    public void WaveButton_clicked()
+    {
+        GameManager.Instance.StartWave();
+        startWaveButton.SetEnabled(true);
+    }
+    public void EnableWaveButton()
+    {
+        startWaveButton.SetEnabled(true);
+    }
 }

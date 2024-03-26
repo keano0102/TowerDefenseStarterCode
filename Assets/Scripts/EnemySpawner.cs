@@ -10,6 +10,7 @@ public class EnemySpawner : MonoBehaviour
     public List<GameObject> Path1 = new List<GameObject>();
     public List<GameObject> Path2 = new List<GameObject>();
     public List<GameObject> Enemies = new List<GameObject>();
+    private int ufoCounter = 0;
 
     public static EnemySpawner Get {  get { return instance; } }
 
@@ -103,5 +104,39 @@ public class EnemySpawner : MonoBehaviour
     private void SpawnTester()
     {
         SpawnEnemy(0, Enums.Path.Path1);
+    }
+    public void StartWave(int number)
+    { 
+        // reset counter
+        ufoCounter = 0;
+        switch (number)
+        {
+            case 1:
+                InvokeRepeating("StartWave1", 1f, 1.5f);
+                break;
+            default:
+                break;
+        }
+    }
+    public void StartWave1()
+    {
+        ufoCounter++;
+
+        if (ufoCounter % 6 <= 1)
+            return;
+        if(ufoCounter<30)
+        {
+            SpawnEnemy(0, Enums.Path.Path1);
+        }
+        else
+        {
+            SpawnEnemy(1, Enums.Path.Path1);
+        }
+        if(ufoCounter >30)
+        {
+            CancelInvoke("StartWave1");//the reverse of InvokeRepeating
+            //depending on your singleton declaretion, Get might be something else
+            GameManager.Instance.EndWave();//let the GameManager know
+        }
     }
 }

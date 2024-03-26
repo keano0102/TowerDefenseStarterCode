@@ -7,35 +7,35 @@ public class TopMenu : MonoBehaviour
     public Label creditslabel;
     public Label healthlabel;
     public Button startWaveButton;
-    private VisualElement root;
 
     public void UpdateTopMenuLabels(int credits, int health, int currentWave)
     {
         Debug.Log("Updating top menu labels: Credits: " + credits + ", Health: " + health + ", Wave: " + currentWave);
         creditslabel.text = "Credits: " + credits;
-        healthlabel.text= "Health: " + health;
+        healthlabel.text = "Health: " + health;
         wavelabel.text = "Wave: " + currentWave;
     }
-    public void Start()
+    private void Awake()
     {
-        root = GetComponent<UIDocument>().rootVisualElement;
+        var root = GetComponent<UIDocument>().rootVisualElement;
         startWaveButton = root.Q<Button>("start-button");
-        wavelabel = root.Q<Label>("wavelabel");
-        creditslabel = root.Q<Label>("creditslabel");
-        healthlabel = root.Q<Label>("healthlabel");
+        wavelabel = root.Q<Label>("wave");
+        creditslabel = root.Q<Label>("credits");
+        healthlabel = root.Q<Label>("health");
     }
+
+
     public void SetWaveLabel(string text)
     {
-        wavelabel.text= text;
+        wavelabel.text = text;
     }
     public void SetCreditsLabel(string text)
     {
         creditslabel.text = text;
     }
-    public void SetHealthLabel(string text) 
+    public void SetHealthLabel(string text)
     {
-        healthlabel.text= text;
+        healthlabel.text = text;
     }
-    
+
 }
-    
